@@ -15,7 +15,7 @@ tasks = []
 @app.get("/tasks")
 
 def get_tasks():
-    return Tasks
+    return tasks
 @app.post("/tasks")
 
 def create_tasks(task: Task):
