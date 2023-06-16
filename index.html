@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tareas App</title>
 </head>
 <body>
-    
+    <h1>Aplicación de tareas</h1>
+    <form id="taskForm">
+        <label for="title">Titulo:</label>
+        <input type="text" id = "title" required>
+        <br>
+        <label for="descripción">Descripción:</label>
+        <input type="text" id = "descripción" required>
+        <br>
+        <label for="completed">Completado:</label>
+        <input type="checkbox" id = "completed" required>
+        <br>
+        <button type="submit">Agregar tarea</button>
+    </form>
+<ul id="taskList"></ul>
+<script src = "script.js"></script>
 </body>
 </html>
