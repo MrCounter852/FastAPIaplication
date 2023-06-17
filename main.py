@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
-
+from fastapi.responses import JSONResponse
 app = FastAPI()
 
 @app.get("/")
@@ -14,14 +14,14 @@ class Task(BaseModel):
 tasks = []
 
 @app.get("/tasks")
-
 def get_tasks():
-    return tasks
+    return JSONResponse(content=tasks)
+
 @app.post("/tasks")
 
 def create_tasks(task: Task):
     tasks.append(task)
-    return task
+    return JSONResponse(content={"message":"se ha creado la tarea"})
 
 @app.put("/tasks/{task_id}")
 def update_task(task_id: int, task: Task):
@@ -30,13 +30,13 @@ def update_task(task_id: int, task: Task):
             tarea.title = task.title
             tarea.description = task.description
             tarea.completed = task.completed
-            return tarea
-    return {"message" : "tarea no encontrada"} 
+            return JSONResponse(content=tarea)
+    return JSONResponse(content={"message" : "tarea no encontrada"}) 
              
 @app.delete("/tasks/{task_id}")
 def delete_tasks(task_id: int):
     for tarea in tasks:
         if tarea.id == task_id:
             tasks.remove(tarea)
-            return {"message": "tarea eliminada"}
-    return {"message": "tarea no encontrada"}
+            return JSONResponse(content={"message": "tarea eliminada"})
+    return JSONResponse(content={"message": "tarea no encontrada"})
