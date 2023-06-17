@@ -1,13 +1,14 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 app = FastAPI()
 
 @app.get("/")
 
 class Task(BaseModel):
-    id : int
-    title: str
-    description: str
+    id : int 
+    title: str = Field(max_length=255)
+    description: str = Field(max_length=255)
     completed: bool
 
 tasks = []
